@@ -1,6 +1,8 @@
-import { IsString } from 'class-validator';
+import { IsNotEmpty, IsString, ValidateIf } from 'class-validator';
 
 export class UpdateTaskDto {
+  @ValidateIf((_, value) => value !== undefined)
   @IsString()
-  title: string;
+  @IsNotEmpty()
+  title?: string;
 }

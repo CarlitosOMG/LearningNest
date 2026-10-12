@@ -31,10 +31,12 @@ export class TasksRepository implements ITasksRepository {
     this.tasks = this.tasks.filter((task) => task.id !== id);
   }
 
-  updateTask(id: number, task: { title: string }) {
+  updateTask(id: number, task: { title?: string }) {
     const taskIndex = this.tasks.findIndex((t) => t.id === id);
     if (taskIndex !== -1) {
-      this.tasks[taskIndex] = { ...this.tasks[taskIndex], ...task };
+      if (task.title !== undefined) {
+        this.tasks[taskIndex].title = task.title;
+      }
       return this.tasks[taskIndex];
     }
     throw new Error('Task not found');

@@ -4,6 +4,6 @@ export interface ITasksRepository {
   deleteTask(id: number): void;
   updateTask(
     id: number,
-    task: { title: string },
+    task: { title?: string },
   ): { id: number; title: string };
 }

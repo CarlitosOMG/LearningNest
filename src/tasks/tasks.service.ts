@@ -25,7 +25,10 @@ export class TasksService {
   }
 
   updateTask(id: number, updateTaskDto: UpdateTaskDto) {
-    const task = { title: updateTaskDto.title };
+    let task: { title?: string } = {};
+    if (updateTaskDto.title !== undefined) {
+      task.title = updateTaskDto.title;
+    }
     return this.tasksRepository.updateTask(id, task);
   }
 }
